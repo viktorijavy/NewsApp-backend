@@ -22,22 +22,32 @@ app.use(express.static(buildPath));
 
 const apiKey = process.env.API_KEY
 
+
 app.get("/news", (req, res) => {
+ 
+  const query =  req.query.search
+  
   let options = {
     method: 'GET',
-    url: `https://newsapi.org/v2/everything?q=ukraine&apiKey=${apiKey}`,
+    url: `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`,
 
   };
 
+  console.log('hello its me')
+
   axios.request(options)
     .then(function (response) {
-      console.log(response.data);
-      res.json({ message: "Hello from server!", payload: response.data });
+      // console.log(response.data);
+      res.json({ payload: response.data });
     })
     .catch(function (error) {
       console.log(error);
       res.json({ message: "Error!" });
     });
+
+
+
+ 
 });
 
 app.get("/country-news", (req, res) => {
