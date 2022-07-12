@@ -26,14 +26,12 @@ const apiKey = process.env.API_KEY
 app.get("/news", (req, res) => {
  
   const query =  req.query.search
-  
+
   let options = {
     method: 'GET',
     url: `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`,
 
   };
-
-  console.log('hello its me')
 
   axios.request(options)
     .then(function (response) {
@@ -45,15 +43,15 @@ app.get("/news", (req, res) => {
       res.json({ message: "Error!" });
     });
 
-
-
- 
 });
 
 app.get("/country-news", (req, res) => {
+
+  const query = req.query.search
+
   let options = {
     method: 'GET',
-    url: `https://newsapi.org/v2/top-headlines?country=lt&apiKey=${apiKey}`,
+    url: `https://newsapi.org/v2/top-headlines?country=${query}&apiKey=${apiKey}`,
 
   };
 
