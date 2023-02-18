@@ -16,16 +16,11 @@ app.use(morgan('dev'))
 const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.static(buildPath));
 
-// app.get('*', (req, res) => {
-//    res.sendFile(path.join(buildPath, 'index.html'));
-// });
-
 const apiKey = process.env.API_KEY
 
-
 app.get("/news", (req, res) => {
- 
-  const query =  req.query.search
+
+  const query = req.query.search
 
   let options = {
     method: 'GET',
@@ -35,7 +30,6 @@ app.get("/news", (req, res) => {
 
   axios.request(options)
     .then(function (response) {
-      // console.log(response.data);
       res.json({ payload: response.data });
     })
     .catch(function (error) {
