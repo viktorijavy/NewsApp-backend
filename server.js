@@ -33,7 +33,6 @@ app.get("/news", (req, res) => {
       res.json({ payload: response.data });
     })
     .catch(function (error) {
-      console.log(error);
       res.json({ message: "Error!" });
     });
 
@@ -51,11 +50,9 @@ app.get("/country-news", (req, res) => {
 
   axios.request(options)
     .then(function (response) {
-      console.log(response.data);
       res.json({ message: "Hello from server!", payload: response.data });
     })
     .catch(function (error) {
-      console.log(error);
       res.json({ message: "Error!" });
     });
 });
